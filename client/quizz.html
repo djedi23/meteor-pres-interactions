@@ -1,0 +1,51 @@
+<template name="quiz">
+  <div class="interaction">
+    {{#if showResult}}
+    <strong>{{question}}</strong>
+    <dl class="dl-horizontal">
+	{{#each responseResult}}
+	<dt>{{l}}</dt><dd>{{p}}</dd>
+	{{/each}}
+    </dl>
+    {{/if}}
+    {{#unless showResult}}
+    {{#if isSpeaker}}
+    <strong>{{question}}</strong>
+    <div><button id="reveal" class="btn btn-primary">{{count}} réponse(s)</button></div>
+    {{/if}}
+    {{#unless isSpeaker}}
+    <div>
+      <strong>{{question}}</strong>
+      <form>
+	{{#each responses}}
+	<div class="radio">
+	  <label>
+	    <input type="radio" value="{{k}}" checked="{{selected}}" disabled="{{disabled}}"/>
+	    {{l}}
+	  </label>
+	</div>
+	{{/each}}
+	<div class="form-group">
+	  {{#unless disabled}}<button id="valid" class="btn btn-primary">Valider</button>{{/unless}}
+	  {{#if disabled}}<hr/>{{count}} réponse(s){{/if}}
+	</div>
+      </form>
+    </div>
+    {{/unless}}
+    {{/unless}}
+  </div>
+</template>
+
+
+<template name="quizEdit">
+  <div class="row">
+    <div class="form-group col-sm-12"><label class="control-label col-sm-3">Question:</label><div class="col-sm-9"><input type="text" class="form-control" id="quizzquestion" value="{{interaction.data.question}}" /></div></div>
+  </div>
+  {{#each responses}}
+  <div class="row">
+    <div class="form-group col-sm-12 response-group">{{#if first}}<label class="control-label col-sm-3">Answers:</label>{{/if}}
+    <div class="{{#unless first}}col-sm-offset-3 {{/unless}}col-sm-2"><input type="text" class="form-control quizzresponsekey" value="{{k}}" /></div>
+    <div class="col-sm-7"><input type="text" class="form-control quizzresponse" value="{{l}}" /></div></div>
+  </div>
+  {{/each}}
+</template>
