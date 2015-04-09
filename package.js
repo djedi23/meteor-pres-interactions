@@ -13,12 +13,12 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.0.3.2');
 
-  api.use(['djedi:pres-collections',
-    'alanning:roles'],
+  api.use(['djedi:pres-collections@0.0.1',
+    'alanning:roles@1.2.13'],
     ['client', 'server']);
   api.use(['templating', 'jquery',
-    'djedi:modules',
-    'numeral:numeral'],
+    'djedi:modules@0.1.0',
+    'numeral:numeral@1.5.3'],
     ['client']);
   api.use(['mongo'],
     ['server']);
